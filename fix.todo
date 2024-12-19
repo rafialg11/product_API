@@ -2,3 +2,5 @@
 - [x] buat .env untuk simpan koneksi db
 - [x] buat mock repo untuk testing (terapkan prinsip Liskov Sub)
 - [x] tambah validasi ketika tambah dan edit data produk
+- [] add transaction feature
+- [] create report data for dashboard
