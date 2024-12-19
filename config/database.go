@@ -3,18 +3,20 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
 	"product_api/entities"
+	"product_api/helpers"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 var Database *gorm.DB
-var DATABASE_URI string = "rafi:password@tcp(127.0.0.1:3306)/product?charset=utf8mb4&parseTime=True&loc=Local"
 
 func ConnectDB() error {
 	var err error
-
+	helpers.LoadEnv()
+	var DATABASE_URI string = os.Getenv("DATABASE_URI")
 	Database, err = gorm.Open(mysql.Open(DATABASE_URI), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,

@@ -13,7 +13,7 @@ func main() {
 	app := fiber.New()
 	config.ConnectDB()
 
-	// Initialize Repository, Service, and Handler
+	// Initializr Product Handler
 	productRepo := repositories.NewProductRepository(config.Database)
 	productService := services.NewProductService(productRepo)
 	handler.NewProductHandler(app, productService)

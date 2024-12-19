@@ -1,8 +1,11 @@
 package services
 
 import (
+	"errors"
 	"product_api/entities"
 	"product_api/repositories"
+
+	"gorm.io/gorm"
 )
 
 type ProductService interface {
@@ -42,6 +45,10 @@ func (p *productService) FindAll() ([]entities.Product, error) {
 func (p *productService) FindById(id uint) (*entities.Product, error) {
 	product, err := p.repository.FindById(id)
 	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return nil, errors.New("product not found")
+		}
+
 		return nil, err
 	}
 
@@ -49,6 +56,14 @@ func (p *productService) FindById(id uint) (*entities.Product, error) {
 }
 
 func (p *productService) Update(product *entities.Product) (*entities.Product, error) {
+	if product.Quantity < 0 {
+		return nil, errors.New("product quantity cannot be negative")
+	}
+
+	if product.Price < 0 {
+		return nil, errors.New("product price cannot be negative")
+	}
+
 	updatedProduct, err := p.repository.Update(product)
 	if err != nil {
 		return nil, err

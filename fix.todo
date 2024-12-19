@@ -1,4 +1,4 @@
-- [] ganti koneksi db
-- [] buat .env untuk simpan koneksi db
+- [x] ganti koneksi db
+- [x] buat .env untuk simpan koneksi db
 - [] buat mock repo untuk testing
-- [] tambah validasi untuk request ketika tambah dan edit data produk
+- [] tambah validasi ketika tambah dan edit data produk
