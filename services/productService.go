@@ -22,15 +22,30 @@ func NewProductService(repository repositories.ProductRepository) ProductService
 }
 
 func (p *productService) Save(product *entities.Product) (*entities.Product, error) {
-	return p.repository.Save(product)
+	product, err := p.repository.Save(product)
+	if err != nil {
+		return nil, err
+	}
+
+	return product, nil
 }
 
 func (p *productService) FindAll() ([]entities.Product, error) {
-	return p.repository.FindAll()
+	products, err := p.repository.FindAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return products, nil
 }
 
 func (p *productService) FindById(id uint) (*entities.Product, error) {
-	return p.repository.FindById(id)
+	product, err := p.repository.FindById(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return product, nil
 }
 
 func (p *productService) Update(product *entities.Product) (*entities.Product, error) {
@@ -43,5 +58,10 @@ func (p *productService) Update(product *entities.Product) (*entities.Product, e
 }
 
 func (p *productService) Delete(id uint) (*entities.Product, error) {
-	return p.repository.Delete(id)
+	delete, err := p.repository.Delete(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return delete, nil
 }
