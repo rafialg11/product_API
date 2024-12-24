@@ -23,7 +23,6 @@ func TestSaveProduct(t *testing.T) {
 		Name:        "Test Product",
 		Price:       100,
 		Description: "Test Description",
-		Quantity:    10,
 	}
 
 	t.Run("Success Save", func(t *testing.T) {
@@ -103,7 +102,6 @@ func TestUpdate(t *testing.T) {
 		Name:        "Test Product",
 		Price:       100,
 		Description: "Test Description",
-		Quantity:    10,
 	}
 	t.Run("Success Update", func(t *testing.T) {
 		mockRepo.EXPECT().Update(product).Return(product, nil)
