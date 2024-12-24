@@ -32,16 +32,10 @@ func (p *productService) Save(product *entities.Product) (*entities.Product, err
 	if product.Price == 0 {
 		return nil, errors.New("product price is required")
 	}
-	if product.Quantity == 0 {
-		return nil, errors.New("product quantity is required")
-	}
 
 	//vlaidation to prevent < 0 price and quantity
 	if product.Price < 0 {
 		return nil, errors.New("product price cannot be negative")
-	}
-	if product.Quantity < 0 {
-		return nil, errors.New("product quantity cannot be negative")
 	}
 
 	//save product
@@ -76,9 +70,6 @@ func (p *productService) FindById(id uint) (*entities.Product, error) {
 }
 
 func (p *productService) Update(product *entities.Product) (*entities.Product, error) {
-	if product.Quantity < 0 {
-		return nil, errors.New("product quantity cannot be negative")
-	}
 
 	if product.Price < 0 {
 		return nil, errors.New("product price cannot be negative")

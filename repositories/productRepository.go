@@ -48,9 +48,6 @@ func (p *productRepository) Update(product *entities.Product) (*entities.Product
 	if product.Description != "" {
 		updates["description"] = product.Description
 	}
-	if product.Quantity != 0 {
-		updates["quantity"] = product.Quantity
-	}
 
 	updates["created_at"] = product.CreatedAt
 
