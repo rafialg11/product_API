@@ -140,7 +140,7 @@ func (p *ProductHandler) Delete(c *fiber.Ctx) error {
 			Error:   err,
 		})
 	}
-	product, err := p.productService.Delete(uint(id))
+	_, err = p.productService.Delete(uint(id))
 	if err != nil {
 		return c.JSON(utils.ApiResponse{
 			Status:  fiber.StatusInternalServerError,
@@ -152,7 +152,7 @@ func (p *ProductHandler) Delete(c *fiber.Ctx) error {
 	return c.JSON(utils.ApiResponse{
 		Status:  fiber.StatusOK,
 		Message: "Success",
-		Data:    product,
+		Data:    nil,
 		Error:   nil,
 	})
 }

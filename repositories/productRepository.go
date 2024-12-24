@@ -37,29 +37,14 @@ func (p *productRepository) FindById(id uint) (*entities.Product, error) {
 }
 
 func (p *productRepository) Update(product *entities.Product) (*entities.Product, error) {
-	updates := make(map[string]interface{})
-
-	if product.Name != "" {
-		updates["name"] = product.Name
-	}
-	if product.Price != 0 {
-		updates["price"] = product.Price
-	}
-	if product.Description != "" {
-		updates["description"] = product.Description
-	}
-
-	updates["created_at"] = product.CreatedAt
-
-	updatedProduct := &entities.Product{}
+	updatesProduct := &entities.Product{}
 	if err := p.db.Model(&entities.Product{}).
 		Where("id = ?", product.ID).
-		Updates(updates).
-		First(updatedProduct, product.ID).Error; err != nil {
+		Updates(product).
+		First(updatesProduct, product.ID).Error; err != nil {
 		return nil, err
 	}
-
-	return updatedProduct, nil
+	return updatesProduct, nil
 }
 
 func (p *productRepository) Delete(id uint) (*entities.Product, error) {
