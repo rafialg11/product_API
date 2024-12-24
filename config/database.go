@@ -25,7 +25,15 @@ func ConnectDB() error {
 		log.Fatal("Failed to connect to database: ", err)
 	}
 
-	err = Database.AutoMigrate(&entities.Product{})
+	err = Database.AutoMigrate(
+		&entities.Product{},
+		&entities.Stock{},
+		&entities.User{},
+		&entities.Purchase{},
+		&entities.PurchaseDetail{},
+		&entities.Sale{},
+		&entities.SaleDetail{},
+	)
 	if err != nil {
 		log.Fatal("Failed to migrate database: ", err)
 	}
