@@ -12,7 +12,7 @@ type ProductHandler struct {
 	productService services.ProductService
 }
 
-func NewProductHandler(app *fiber.App, productService services.ProductService) {
+func NewProductHandler(app fiber.Router, productService services.ProductService) {
 	productHandler := ProductHandler{productService: productService}
 	app.Get("/products", productHandler.FindAll)
 	app.Get("/products/:id", productHandler.FindById)

@@ -12,8 +12,8 @@ type StockHandler struct {
 	stockService services.StockService
 }
 
-func NewStockHandler(app *fiber.App) {
-	stockHandler := StockHandler{}
+func NewStockHandler(app fiber.Router, stockService services.StockService) {
+	stockHandler := StockHandler{stockService: stockService}
 	app.Get("/stocks", stockHandler.FindAll)
 	app.Get("/stocks/:id", stockHandler.FindById)
 	app.Post("/stocks", stockHandler.Save)

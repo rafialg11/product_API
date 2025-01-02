@@ -13,10 +13,17 @@ func main() {
 	app := fiber.New()
 	config.ConnectDB()
 
+	v1 := app.Group("/api/v1")
+
 	// Initializr Product Handler
 	productRepo := repositories.NewProductRepository(config.Database)
 	productService := services.NewProductService(productRepo)
-	handler.NewProductHandler(app, productService)
+	handler.NewProductHandler(v1, productService)
+
+	//Initialize Stock Handler
+	stockRepo := repositories.NewStockRepository(config.Database)
+	stockService := services.NewStockService(stockRepo)
+	handler.NewStockHandler(v1, stockService)
 
 	// Start the server
 	app.Listen(":3000")
