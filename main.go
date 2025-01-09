@@ -25,6 +25,9 @@ func main() {
 	stockService := services.NewStockService(stockRepo)
 	handler.NewStockHandler(v1, stockService)
 
+	//initialize Oauth Handler
+	handler.NewOauthHandler(v1)
+
 	// Start the server
 	app.Listen(":3000")
 }
